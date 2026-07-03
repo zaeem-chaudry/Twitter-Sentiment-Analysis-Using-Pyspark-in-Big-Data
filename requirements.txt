@@ -1,0 +1,2 @@
+pyspark>=3.4
+textblob>=0.17
