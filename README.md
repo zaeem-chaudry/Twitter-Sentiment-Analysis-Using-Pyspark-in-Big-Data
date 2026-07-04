@@ -89,6 +89,22 @@ pip install -r requirements.txt
 python -m src.run_pipeline --input path/to/tweets.csv --text-column text --train
 ```
 
+If you collect fresh X data with Xquik, normalize the exported CSV before
+passing it to the Spark job:
+
+```python
+import pandas as pd
+
+from src.xquik_export import normalize_xquik_export
+
+df = pd.read_csv("xquik-export.csv")
+normalize_xquik_export(df).to_csv("data/xquik-tweets.csv", index=False)
+```
+
+The helper accepts common text column names such as `text`, `tweet`,
+`tweet_text`, `full_text`, and `content`, drops empty rows, and keeps any
+engagement columns for later analysis.
+
 Run the unit tests:
 
 ```bash
